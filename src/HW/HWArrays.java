@@ -5,14 +5,20 @@ import java.util.Scanner;
 
 public class HWArrays {
     public static void main(String[] args) {
+
+
         System.out.println("Задача 1");
         // Задача 1: Найти наибольший общий делитель (НОД) двух чисел
         int a = 60, b = 45;
+        int gCF = 1;
         for (int i = 1; i <= b; i++) {
             if (a % i == 0 && b % i == 0) {
-                System.out.println(i);
+                gCF = i;
             }
         }
+        System.out.println("НОД чисел " + a + " и " + b + " является: " + gCF);
+
+
         System.out.println("Задача 2");
         //Задача 2:Дан массив целых чисел. Массив не отсортирован, числа могут повторяться.
         // Необходимо найти в данном массиве такие два числа n и m, чтобы их сумма была равна 7. Например, 2 + 5 = 7, 6 + 1 = 7, -2 + 9 = 7.
@@ -28,6 +34,8 @@ public class HWArrays {
                 }
             }
         }
+
+
         System.out.println("Задача 3");
         //Заполните массив на N элементов случайным числами и выведете максимальное, минимальное и среднее значение.
         int[] arr2 = new int[10];
@@ -48,6 +56,8 @@ public class HWArrays {
                 System.out.println("min_v = " + min_v + ", middle_v = " + middle_v + ", max_v = " + max_v);
             }
         }
+
+
         System.out.println("Задача 4");
         //Пользователь вводит с клавиатуры натуральное число большее 3, которое сохраняется в переменную n.
         // Если пользователь ввёл не подходящее число, то программа должна просить пользователя повторить ввод.
@@ -64,34 +74,53 @@ public class HWArrays {
             System.out.println(Arrays.toString(arbArr));
             int[] arbArr1 = new int[Val + 1];
             for (int i = 0; i < arbArr.length; i++) {
-                if(arbArr[i] % 2 == 0){
+                if (arbArr[i] % 2 == 0) {
                     arbArr1[i] = arbArr[i];
                 }
             }
             Arrays.sort(arbArr1);
             System.out.println(Arrays.toString(arbArr1));
-            for(int i = arbArr1.length - 1; i >= 0; i--){
-                if(arbArr1[i] == 0){
+            for (int i = arbArr1.length - 1; i >= 0; i--) {
+                if (arbArr1[i] == 0) {
                     arbArr1[i] = arbArr1[i + 1];
                 }
             }
             System.out.println(Arrays.toString(arbArr1));
-        }
-        else{
+        } else {
             System.out.println("Запустите програвмму заново и введите натуральное число больше 3-х");
         }
+
+
         System.out.println("Задача 5");
         //Создать двумерный массив из 5 строк по 8 столбцов в каждой из случайных целых чисел из отрезка [-99;99].
         // Вывести массив в консоль. После на отдельной строке вывести в консоль значение максимального элемента этого массива.
-        final int min = -99;
-        final int max = 99;
-        final int rnd = rnd(min,max);
         int[][] multArr = new int[5][8];
-        for(int i = 0; i < multArr.length; i++){
-            for(int j = 0; j < multArr.length; j++){
-                multArr[i][j] = rnd(min, max);
+        for (int i = 0; i < multArr.length; i++) {
+            for (int j = 0; j < multArr[i].length; j++) {
+                if (j % 2 == 0) {
+                    multArr[i][j] = (int) (Math.random() * 100);
+                } else {
+                    multArr[i][j] = (int) (Math.random() * -100);
+                }
             }
         }
-        System.out.println(Arrays.toString(multArr));
+        System.out.println("Генерация массива:");
+        System.out.println(Arrays.deepToString(multArr));
+        for (int i = 0; i < multArr.length; i++) {
+            for (int j = 0; j < multArr[i].length; j++) {
+                Arrays.sort(multArr[i]);
+            }
+        }
+        System.out.println("Сортировка массива:");
+        System.out.println(Arrays.deepToString(multArr));
+        int max = multArr[0][7];
+        for (int i = 1; i < multArr.length; i++) {
+            int j = 7;
+            if(multArr[i][j] > max){
+                max = multArr[i][j];
+            }
+        }
+        System.out.println("Максимальное число в данном массиве - это " + max);
+
     }
 }
